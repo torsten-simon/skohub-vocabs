@@ -1,0 +1,25 @@
+name: Build /public and delpoy to gh-pages with docker container
+
+on:
+  push:
+    branches:
+      - github-workflow
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: mkdir public
+      
+      - run: mkdir data
+
+      - run: git clone https://github.com/sroertgen/oer-metadata-hub-vocab.git data/
+
+      - name: build public dir with docker image 
+        run: docker run -v $(pwd)/public:/app/public -v $(pwd)/data:/app/data laocoon667/skohub-vocab:latest
+
+      - uses: actions/upload-artifact@master
+        with:
+          name: public
+          path: public
