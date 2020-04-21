@@ -1,6 +1,22 @@
 # Static site generator for Simple Knowledge Management Systems (SKOS)
 
+THIS IS A FORK OF THE SKOHUB-VOCABS-TOOL FROM THE [SKOHUB-PROJECT](http://skohub.io)!
+
 This part of the [SkoHub](http://skohub.io) project covers the need to easily publish a controlled vocabulary as a SKOS file, with a basic lookup API and a nice HTML view including links to an inbox for each subject. It consists of two parts: the actual static site generator and a webhook server that allows to trigger a build from GitHub.
+
+## Docker Setup
+
+In order to serve this app via GitHub Pages a GitHub-action-workflow and a Dockerfile were created. The Dockerfile will build a `public`-dir from the `data`-dir. It has to be bind mounted to two volumes, e.g. the `data` and the `public`-dir. So in a direcotry with these two dirs (and some `ttl`-files in your data dir) you could do something like this (laocoon667 is my Docker-Hub username, where I pushed the image):
+
+`docker run -v $(pwd)/public:/app/public -v $(pwd)/data:/app/data laocoon667/skohub-vocabs:latest`
+
+This will spin up the container build `public` out of `data` and then shut down again.
+
+Because we can use available infrastructure, why not use GitHub-Pages to serve our app?
+
+For this to work a workflow file `.github/workflows/main.yml` was created, which will automatically deploy the `public`-dir to the `gh-pages`-branch. First it gets the vocabulary with a `git clone`, e.g. from a GitHub-repo like <https://github.com/sroertgen/oer-metadata-hub-vocab> and puts it to a `data` folder. Then it spins up the docker image and bind mounts just like mentioned above. It builds the public dir and afterward its deployed using another GitHub action.
+
+In order for this to work you have to adjust the `.env.production`-file and set `BASEURL` to the repo name you want to serve your site from, e.g. `BASEURL=/skohub-vocabs` or maybe your vocab-repo so it always has the newest vocabs to display.
 
 ## Set up
 
@@ -41,17 +57,3 @@ Running `npm run listen` will start the server on the defined `PORT` and expose 
 ## Connecting to our webhook server
 
 Feel free to clone https://github.com/literarymachine/skos.git to poke around. Go to https://github.com/YOUR_GITHUB_USER/skos/settings/hooks/new to set up the web hook (get in touch to receive the secret). Edit https://github.com/YOUR_GITHUB_USER/skos/edit/master/hochschulfaecher.ttl and commit the changes to master. This will trigger a build and expose it at https://test.skohub.io/YOUR_GITHUB_USER/skos/w3id.org/class/hochschulfaecher/scheme.
-
-## Docker Setup
-
-In order to serve this app via GitHub Pages I created a GitHub-action-workflow and a Dockerfile. The Dockerfile will build a `public`-dir from the `data`-dir. It has to be bind mounted to two volumes, e.g. the `data` and the `public`-dir. So in a direcotry with these two dirs (and some ttl-files in your data dir) you could do something like this (laocoon667 is my Docker-Hub username, where I pushed the image):
-
-`docker run -v $(pwd)/public:/app/public -v $(pwd)/data:/app/data laocoon667/skohub-vocabs:latest`
-
-This will spin up the container build `public` out of `data` and then shut down again.
-
-Because we can use available infrastructure, why not use GitHub-Pages to serve our app?
-
-For this to work I created a workflow file, which will automatically deploy the `public`-dir to the `gh-pages`-branch. First it gets the vocabulary with a `git clone`, e.g. from a GitHub-repo like <https://github.com/sroertgen/oer-metadata-hub-vocab> and puts it to a `data` folder. Then it spins up the docker image and bind mounts just like mentioned above. It builds the public dir and afterward its deployed using another GitHub action.
-
-In order for this to work you have to adjust the `.env.production`-file and set `BASEURL` to the repo name you want to serve your site from, e.g. `BASEURL=/skohub-vocabs` or maybe your vocab-repo so it always has the newest vocabs to display.
