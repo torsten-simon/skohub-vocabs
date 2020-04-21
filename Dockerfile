@@ -1,6 +1,8 @@
 FROM node:alpine
 
-RUN apk add git --no-cache
+RUN \
+  apk add --no-cache git python make g++ && \
+  rm -fR /var/cache/apk/*
 
 WORKDIR /app
 

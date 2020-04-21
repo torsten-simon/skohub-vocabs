@@ -17,7 +17,7 @@ jobs:
       - run: git clone https://github.com/sroertgen/oer-metadata-hub-vocab.git data/
 
       - name: build public dir with docker image 
-        run: docker run -v $(pwd)/public:/app/public -v $(pwd)/data:/app/data laocoon667/skohub-vocab:latest
+        run: docker run -v $(pwd)/public:/app/public -v $(pwd)/data:/app/data laocoon667/skohub-vocabs:latest
 
       - uses: actions/upload-artifact@master
         with:
