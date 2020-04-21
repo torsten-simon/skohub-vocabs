@@ -5,6 +5,7 @@ on:
     branches:
       - docker
       - deploy-pages
+      - gh-pages
 
 jobs:
   build:
