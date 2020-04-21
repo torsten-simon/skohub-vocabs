@@ -4,8 +4,7 @@ on:
   push:
     branches:
       - docker
-      - deploy-pages
-      - gh-pages
+      - deploy-gh-page
 
 jobs:
   build:
