@@ -4,7 +4,8 @@ module.exports = {
     description: `Static site generator for Simple Knowledge Management Systems (SKOS)`,
     author: `@gatsbyjs`,
   },
-  pathPrefix: `${process.env.BASEURL || ''}`,
+  pathPrefix: ``,
+  assetPrefix: `/public`,
   plugins: [
     `gatsby-plugin-emotion`,
     {
