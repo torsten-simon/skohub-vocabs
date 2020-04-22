@@ -18,8 +18,8 @@ For this to work a workflow file `.github/workflows/main.yml` was created, which
 
 In order for this to work you have to add `BASEURL` to the `.env`-file and add the name you want to serve your site from, e.g. `BASEURL=/your-repo-name` or maybe your vocab-repo so it always has the newest vocabs to display. You also have to adjust your `gatsby-config.js`-file and add the following:
 
-    pathPrefix: ``,
-    assetPrefix: `/your-repo-name`,
+    pathPrefix: `/your-repo-name`,
+    assetPrefix: ``,
 
 ## Set up
 
