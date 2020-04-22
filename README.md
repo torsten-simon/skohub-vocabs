@@ -21,6 +21,8 @@ In order for this to work you have to add `BASEURL` to the `.env`-file and add t
     pathPrefix: `/your-repo-name`,
     assetPrefix: ``,
 
+If you want to use a normal web-server like Apache or Nginx, just leave everything as is.
+
 ## Set up
 
     $ git clone https://github.com/hbz/skohub-vocabs.git
