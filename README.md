@@ -16,7 +16,10 @@ Because we can use available infrastructure, why not use GitHub-Pages to serve o
 
 For this to work a workflow file `.github/workflows/main.yml` was created, which will automatically deploy the `public`-dir to the `gh-pages`-branch. First it gets the vocabulary with a `git clone`, e.g. from a GitHub-repo like <https://github.com/sroertgen/oer-metadata-hub-vocab> and puts it to a `data` folder. Then it spins up the docker image and bind mounts just like mentioned above. It builds the public dir and afterward its deployed using another GitHub action.
 
-In order for this to work you have to adjust the `.env.production`-file and set `BASEURL` to the repo name you want to serve your site from, e.g. `BASEURL=/skohub-vocabs` or maybe your vocab-repo so it always has the newest vocabs to display.
+In order for this to work you have to add `BASEURL` to the `.env`-file and add the name you want to serve your site from, e.g. `BASEURL=/your-repo-name` or maybe your vocab-repo so it always has the newest vocabs to display. You also have to adjust your `gatsby-config.js`-file and add the following:
+
+    pathPrefix: ``,
+    assetPrefix: `/your-repo-name`,
 
 ## Set up
 
