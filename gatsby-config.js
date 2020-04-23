@@ -5,7 +5,6 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   pathPrefix: ``,
-  assetPrefix: ``,
   plugins: [
     `gatsby-plugin-emotion`,
     {
