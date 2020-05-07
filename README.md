@@ -22,6 +22,15 @@ In order for this to work you have to add `BASEURL` to the `.env`-file and add t
 
 If you want to use a normal web-server like Apache or Nginx, just leave everything as is.
 
+## Customization
+
+The preferred displayed language can be set by modifying `/dist/build/index.html`, e.g.
+
+```html
+    <html lang="de">
+```
+
+
 ## Set up
 
     $ git clone https://github.com/hbz/skohub-vocabs.git
