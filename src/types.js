@@ -9,6 +9,7 @@ module.exports = languages => `
   type Concept implements Node {
     type: String,
     prefLabel: LanguageMap,
+    altLabel: LanguageMap,
     definition: LanguageMap,
     scopeNote: LanguageMap,
     note: LanguageMap,

@@ -36,6 +36,9 @@ const jsonld = {
     "prefLabel": {
       "@container": "@language"
     },
+    "altLabel": {
+      "@container": "@language"
+    },
     "definition": {
       "@container": "@language"
     },
