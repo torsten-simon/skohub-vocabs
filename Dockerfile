@@ -14,4 +14,6 @@ RUN npm install -f
 
 COPY . .
 
+COPY .env.example .env
+
 CMD ["npm", "run", "build"]
