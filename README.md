@@ -1,6 +1,19 @@
-# Static site generator for Simple Knowledge Management Systems (SKOS)
+# DOCKER VERSION of Static site generator for Simple Knowledge Management Systems (SKOS)
 
 This part of the [SkoHub](http://skohub.io) project covers the need to easily publish a controlled vocabulary as a SKOS file, with a basic lookup API and a nice HTML view including links to an inbox for each subject. It consists of two parts: the actual static site generator and a webhook server that allows to trigger a build from GitHub. For usage & implementation details see the [blog post](https://blog.lobid.org/2019/09/27/presenting-skohub-vocabs.html).
+
+## Docker Set up
+
+You can pull the container from [Docker Hub](https://hub.docker.com/r/skohub/skohub-vocabs-docker) and let your vocabulary be built in the container.
+To have access to the `data`-folder as input and the `public`-folder as output, we can bind mount these to the container.
+To be able to serve your site from some other location as root (e.g. being served via GitHub-Pages) you can also bind mount an `.env.production`-file and provide the respective `PATH_PREFIX`. See `.env.production.example` for an example (rename it to `.env.production` for using it).
+If you want to test a docker command could look like this:
+
+`docker run -v $(pwd)/public:/app/public -v $(pwd)/data:/app/data -v $(pwd)/.env.production:/app/.env.production skohub/skohub-vocabs-docker:latest`
+
+An exemplary use case might be you want to use GitHub (or GitLab) infrastructure to host your vocabulary.
+You can provide the repo-path in `.env.production` and implement a GitHub Action which will build the vocabulary and push it to a GitHub-Pages branch.
+See this repo as an example: <https://github.com/skohub-io/skohub-docker-vocabs>
 
 ## Set up
 
