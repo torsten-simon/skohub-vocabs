@@ -1,0 +1,24 @@
+PREFIX dc: <http://dublincore.org/elements/1.1/> 
+PREFIX dct: <http://purl.org/dc/terms/> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skohub: <https://skohub.io/shex/> 
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
+PREFIX skosxl: <http://www.w3.org/2008/05/skos-xl#> 
+PREFIX vann: <http://purl.org/vocab/vann/>
+PREFIX vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> 
+PREFIX xml: <http://www.w3.org/XML/1998/namespace> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+
+skohub:ConceptSchemeShape {
+ rdf:type skos:ConceptScheme;
+  dct:title xsd:string;
+  dct:description xsd:string;
+  dct:issued xsd:date?;
+  dct:created xsd:date?;
+  dct:modified xsd:date?;
+  dct:creator IRI*;
+  dct:publisher IRI*;
+  vann:preferredNamespacePrefix xsd:string?;
+  vann:preferredNamespaceUri xsd:string?;
+}
