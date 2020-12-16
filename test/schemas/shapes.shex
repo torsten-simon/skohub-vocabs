@@ -2,7 +2,7 @@ PREFIX dc: <http://dublincore.org/elements/1.1/>
 PREFIX dct: <http://purl.org/dc/terms/> 
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX skohub: <https://skohub.io/shex/> 
+PREFIX schema: <http://schema.org/>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
 PREFIX skosxl: <http://www.w3.org/2008/05/skos-xl#> 
 PREFIX vann: <http://purl.org/vocab/vann/>
@@ -10,8 +10,8 @@ PREFIX vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#>
 PREFIX xml: <http://www.w3.org/XML/1998/namespace> 
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
 
-skohub:ConceptSchemeShape {
- rdf:type skos:ConceptScheme;
+<ConceptSchemeShape> IRI {
+  rdf:type skos:ConceptScheme;
   dct:title xsd:string;
   dct:description xsd:string;
   dct:issued xsd:date?;
@@ -21,4 +21,23 @@ skohub:ConceptSchemeShape {
   dct:publisher IRI*;
   vann:preferredNamespacePrefix xsd:string?;
   vann:preferredNamespaceUri xsd:string?;
+  schema:isBasedOn IRI*;
+  skos:hasTopConcept @<ConceptShape>
 }
+
+<ConceptShape> IRI {
+  rdf:type skos:Concept;
+  skos:prefLabel [ @en @de ];
+  (
+    skos:topConceptOf @<ConceptSchemeShape>
+  |
+    skos:inScheme @<ConceptSchemeShape>
+  );
+  skos:altLabel [ @en @de ]*;
+  skos:notation xsd:string;
+  skos:narrower @<ConceptShape>*;
+  skos:broader @<ConceptShape>?;
+  skos:scopeNote [ @en @de ]?
+}
+
+<application>@<ConceptShape>, <assessment>@<ConceptShape>, <audio>@<ConceptShape>, <case_study>@<ConceptShape>, <course>@<ConceptShape>, <data>@<ConceptShape>, <diagram>@<ConceptShape>,<drill_and_practice>@<ConceptShape>, <educational_game>@<ConceptShape>, <experiment>@<ConceptShape>, <image>@<ConceptShape>, <index>@<ConceptShape>, <lesson_plan>@<ConceptShape>, <map>@<ConceptShape>, <portal>@<ConceptShape>, <questionnaire>@<ConceptShape>, <script>@<ConceptShape>, <simulation>@<ConceptShape>, <slide>@<ConceptShape>, <text>@<ConceptShape>, <video>@<ConceptShape>, <web_page>@<ConceptShape>,<worksheet>@<ConceptShape>, <other>@<ConceptShape>, <scheme>@<ConceptSchemeShape>
