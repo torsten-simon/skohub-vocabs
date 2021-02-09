@@ -174,7 +174,22 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
           data: JSON.stringify(jsonas, null, 2)
         })
       }
-      languages.forEach(language => index.add(concept.id, i18n(language)(concept.prefLabel)))
+      languages.forEach((language) =>
+        index.add(concept.id, i18n(language)(concept.prefLabel))
+      )
+
+      // create redirect page for every concept
+      createPage({
+        path: getFilePath(concept.id, `html`),
+        component: path.resolve(`./src/components/indexRedirect.js`),
+        context: {
+          redirectPath: getFilePath(
+            concept.id,
+            `${Array.from(languages)[0]}.html`
+          ),
+          baseURL: process.env.BASEURL || "",
+        },
+      })
     })
 
     console.log("Built index", index.info())
@@ -202,6 +217,19 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
       path: getFilePath(conceptScheme.id, 'index'),
       data: JSON.stringify(index.export(), null, 2)
     })
+
+    // create redirect for conceptScheme
+    createPage({
+      path: getFilePath(conceptScheme.id, `html`),
+      component: path.resolve(`./src/components/indexRedirect.js`),
+      context: {
+        redirectPath: getFilePath(
+          conceptScheme.id,
+          `${Array.from(languages)[0]}.html`
+        ),
+        baseURL: process.env.BASEURL || "",
+      },
+    })
   })
 
   // Build index pages
@@ -214,6 +242,16 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
       conceptSchemes: conceptSchemes.data.allConceptScheme.edges.map(node => node.node)
     },
   }))
+
+  // create index redirect for public/
+  createPage({
+    path: `/index.html`,
+    component: path.resolve(`./src/components/indexRedirect.js`),
+    context: {
+      redirectPath: `/index.${Array.from(languages)[0]}.html`,
+      baseURL: (process.env.BASEURL || ""),
+    },
+  })
 
 }
 
