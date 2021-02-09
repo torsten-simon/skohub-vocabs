@@ -6,7 +6,7 @@ This part of the [SkoHub](http://skohub.io) project covers the need to easily pu
 
 You can pull the container from [Docker Hub](https://hub.docker.com/r/skohub/skohub-vocabs-docker) and let your vocabulary be built in the container.
 To have access to the `data`-folder as input and the `public`-folder as output, we can bind mount these to the container.
-To be able to serve your site from some other location as root (e.g. being served via GitHub-Pages) you can also bind mount an `.env.production`-file and provide the respective `PATH_PREFIX`. See `.env.production.example` for an example (rename it to `.env.production` for using it).
+To be able to serve your site from some other location as root (e.g. being served via GitHub-Pages) you can also bind mount an `.env.production`-file and provide the respective `BASEURL`. See `.env.production.example` for an example (rename it to `.env.production` for using it).
 If you want to test a docker command could look like this:
 
 `docker run -v $(pwd)/public:/app/public -v $(pwd)/data:/app/data -v $(pwd)/.env.production:/app/.env.production skohub/skohub-vocabs-docker:latest`
