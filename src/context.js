@@ -54,6 +54,9 @@ const jsonld = {
     "narrower": {
       "@container": "@set"
     },
+    "relatedMatch": {
+      "@container": "@set"
+    },
     "narrowerTransitive": {
       "@container": "@set"
     },
