@@ -85,7 +85,7 @@ module.exports.allConcept = (inScheme, languages) => `
   }
 `
 
-module.exports.allConceptScheme = languages => `
+module.exports.allConceptScheme = (languages) => `
   {
     allConceptScheme {
       edges {
@@ -93,10 +93,10 @@ module.exports.allConceptScheme = languages => `
           id
           type
           title {
-            ${[...languages].join(' ')}
+            ${[...languages].join(" ")}
           }
           description {
-            ${[...languages].join(' ')}
+            ${[...languages].join(" ")}
           }
           hasTopConcept {
             ...ConceptFields
@@ -121,10 +121,13 @@ module.exports.allConceptScheme = languages => `
     id
     notation
     prefLabel {
-      ${[...languages].join(' ')}
+      ${[...languages].join(" ")}
     }
     altLabel {
-      ${[...languages].join(' ')}
+      ${[...languages].join(" ")}
+    }
+    relatedMatch {
+      id
     }
   }
 `
