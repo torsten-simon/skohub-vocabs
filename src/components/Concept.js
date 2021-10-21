@@ -2,32 +2,36 @@
 import { jsx } from '@emotion/core'
 import Markdown from 'markdown-to-jsx'
 import { Link } from 'gatsby'
+import JsonLink from './JsonLink'
 
 import { i18n, getDomId, getFilePath } from '../common'
 
-const Concept = ({ pageContext: { node: concept, language } }) => (
+const Concept = ({ pageContext: { node: concept, language, baseURL } }) => (
   <div className="content block" id={getDomId(concept.id)}>
     <h1>
-      {concept.notation && 
-      <span>{concept.notation.join(',')}&nbsp;</span>
+      {concept.notation &&
+        <span>{concept.notation.join(',')}&nbsp;</span>
       }
       {i18n(language)(concept.prefLabel)}
     </h1>
     <h2>{concept.id}</h2>
+    <JsonLink
+      to={baseURL + getFilePath(concept.id, "json")}
+    />
     <p>
       <a href={concept.inbox}>Inbox</a>
     </p>
-    {concept.definition 
+    {concept.definition
       && (
         <div className="markdown">
           <h3>Definition</h3>
           <Markdown>
             {i18n(language)(concept.definition)}
           </Markdown>
-      </div>
+        </div>
       )
     }
-    {concept.scopeNote 
+    {concept.scopeNote
       && (
         <div className="markdown">
           <h3>Scope Note</h3>
@@ -37,7 +41,7 @@ const Concept = ({ pageContext: { node: concept, language } }) => (
         </div>
       )
     }
-    {concept.note 
+    {concept.note
       && (
         <div className="markdown">
           <h3>Note</h3>
@@ -45,10 +49,18 @@ const Concept = ({ pageContext: { node: concept, language } }) => (
             {i18n(language)(concept.note)}
           </Markdown>
         </div>
-      )
-    }
-    {concept.example 
-      && (
+    )}
+    {concept.altLabel && i18n(language)(concept.altLabel) !== '' && (
+      <div>
+        <h3>Alt Label</h3>
+          <ul>
+          {i18n(language)(concept.altLabel).map((altLabel, i) => (
+              <li key={i}>{altLabel}</li>
+            ))}
+          </ul>
+      </div>
+    )}
+    {concept.example && (
         <div className="markdown">
           <h3>Example</h3>
           <Markdown>
