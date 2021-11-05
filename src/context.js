@@ -5,7 +5,7 @@ const jsonld = {
     "@vocab": "http://www.w3.org/2004/02/skos/core#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "dct": "http://purl.org/dc/terms/",
-    "schema": "http://schema.org/",
+    "schema": "https://schema.org/",
     "vann": "http://purl.org/vocab/vann/",
     "title": {
       "@id": "dct:title",
@@ -51,6 +51,7 @@ const jsonld = {
     "notation": {
       "@container": "@set"
     },
+    "url": "schema:url",
     "narrower": {
       "@container": "@set"
     },

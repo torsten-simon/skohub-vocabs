@@ -79,6 +79,7 @@ module.exports.allConcept = (inScheme, languages) => `
           relatedMatch {
             id
           }
+          url
         }
       }
     }
@@ -129,5 +130,6 @@ module.exports.allConceptScheme = (languages) => `
     relatedMatch {
       id
     }
+    url
   }
 `

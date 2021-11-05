@@ -57,7 +57,7 @@ exports.sourceNodes = async ({
     compacted['@graph'].forEach((graph, i) => {
       const {
         narrower, narrowerTransitive, broader, broaderTransitive, inScheme, topConceptOf,
-        hasTopConcept, ...properties
+        hasTopConcept, relatedMatch, url, ...properties
       } = graph
       const type = Array.isArray(properties.type)
         ? properties.type.find(t => ['Concept', 'ConceptScheme'])
@@ -78,6 +78,8 @@ exports.sourceNodes = async ({
           contentDigest: createContentDigest(graph),
           type,
         },
+        url: (url && url.id) || null,
+        relatedMatch
       }
       if (type === 'Concept') {
         Object.assign(node, {
@@ -115,6 +117,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
       const jsonas = omitEmpty({
         context: context.as,
         id: actor,
+        url: concept.url,
         type: 'Service',
         name: t(concept.prefLabel),
         preferredUsername: Buffer.from(actorPath).toString('hex'),

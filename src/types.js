@@ -1,4 +1,4 @@
-module.exports = languages => `
+module.exports = (languages) => `
   type ConceptScheme implements Node {
     type: String,
     title: LanguageMap,
@@ -22,9 +22,11 @@ module.exports = languages => `
     inScheme: ConceptScheme! @link(from: "inScheme___NODE"),
     hub: String,
     inbox: String
+    relatedMatch: [Concept],
+    url: String
   }
 
   type LanguageMap {
-    ${[...languages].map(l => `${l}: String`).join(', ')}
+    ${[...languages].map((l) => `${l}: String`).join(", ")}
   }
 `
