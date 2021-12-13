@@ -16,67 +16,85 @@ module.exports.allConcept = (inScheme, languages) => `
           followers
           inbox
           prefLabel {
-            ${[...languages].join(" ")}
+            ${[...languages].join(' ')}
           }
           altLabel {
-            ${[...languages].join(" ")}
+            ${[...languages].join(' ')}
           }
           definition {
-            ${[...languages].join(" ")}
+            ${[...languages].join(' ')}
           }
           scopeNote {
-            ${[...languages].join(" ")}
+            ${[...languages].join(' ')}
           }
           note {
-            ${[...languages].join(" ")}
+            ${[...languages].join(' ')}
           }
           notation
           narrower {
             id
             prefLabel {
-              ${[...languages].join(" ")}
+              ${[...languages].join(' ')}
             }
             altLabel {
-              ${[...languages].join(" ")}
+              ${[...languages].join(' ')}
             }
           }
           narrowerTransitive {
             id
             prefLabel {
-              ${[...languages].join(" ")}
+              ${[...languages].join(' ')}
             }
             altLabel {
-              ${[...languages].join(" ")}
+              ${[...languages].join(' ')}
             }
           }
           broader {
             id
             prefLabel {
-              ${[...languages].join(" ")}
+              ${[...languages].join(' ')}
             }
             altLabel {
-              ${[...languages].join(" ")}
+              ${[...languages].join(' ')}
             }
           }
           broaderTransitive {
             id
             prefLabel {
-              ${[...languages].join(" ")}
+              ${[...languages].join(' ')}
             }
             altLabel {
-              ${[...languages].join(" ")}
+              ${[...languages].join(' ')}
             }
+          }
+          related {
+            id
+            prefLabel {
+              ${[...languages].join(' ')}
+            }
+          }
+          relatedMatch {
+            id
+          }
+          broadMatch {
+            id
+          }
+          narrowMatch {
+            id
+          }
+          closeMatch {
+            id
+          }
+          exactMatch {
+            id
           }
           inScheme {
             id
             title {
-              ${[...languages].join(" ")}
+              ${[...languages].join(' ')}
             }
           }
           topConceptOf {
-            id
-          }
-          relatedMatch {
             id
           }
           url
@@ -94,10 +112,10 @@ module.exports.allConceptScheme = (languages) => `
           id
           type
           title {
-            ${[...languages].join(" ")}
+            ${[...languages].join(' ')}
           }
           description {
-            ${[...languages].join(" ")}
+            ${[...languages].join(' ')}
           }
           hasTopConcept {
             ...ConceptFields
@@ -122,10 +140,10 @@ module.exports.allConceptScheme = (languages) => `
     id
     notation
     prefLabel {
-      ${[...languages].join(" ")}
+      ${[...languages].join(' ')}
     }
     altLabel {
-      ${[...languages].join(" ")}
+      ${[...languages].join(' ')}
     }
     relatedMatch {
       id
